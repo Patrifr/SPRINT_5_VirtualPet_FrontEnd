@@ -1,0 +1,336 @@
+.jersey-10-regular {
+    font-family: "Jersey 10", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .tiny5-regular {
+    font-family: "Tiny5", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .bigelow-rules-regular {
+    font-family: "Bigelow Rules", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .admin-dashboard {
+    display: flex;
+    flex-direction: column; 
+    height: 100vh;  
+  }
+  
+  /*TITLE*/
+  .admindashboard-whimsy-logo-container {
+    display: flex;
+    justify-content: center;   /* Centra la imagen horizontalmente */
+    align-items: center;       /* Centra la imagen verticalmente */
+    height: 15vh; 
+    margin-top: -100px;
+  }
+  
+  .admindashboard-title-text {
+    font-family: "Bigelow Rules", serif; 
+    font-size: 6rem;  
+    color: #220526;  
+    text-align: center; 
+    font-weight: 400 !important; 
+    padding-top: 250px;
+  }
+  
+  /*PET CONTAINER*/
+  .admindashboard-pets-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; 
+    max-width: 1365px;
+    width: 1365px;
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding-bottom: 20px;  
+    padding-top: 150px;
+    box-sizing: border-box;
+    padding-left: 80px;
+  }
+  
+  .admindashboard-pet-card {
+    position: relative; 
+    width: 200px;
+    height: 300px; 
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box; 
+  }
+  
+  .admindashboard-pet-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .admindashboard-pet-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  /*PET IMAGE*/
+  .admindashboard-pet-image-container {
+    width: 100%;
+    height: 150px; 
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    position: relative; 
+    overflow: contain;
+  }
+
+  .admindashboard-pet-image {
+    position: relative; 
+    bottom: -68px;
+    z-index: 2;
+    width: auto; 
+    max-width: 70%; 
+    max-height: 70%; 
+    object-fit: contain; 
+  }
+
+  .admindashboard-pet-image {
+    position: relative;
+    bottom: -60px;
+    z-index: 1;
+    width: auto;
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+  }
+
+  /*ACCESORIES*/
+.admindashboard-pet-accessory-image {
+  position: absolute;
+  z-index: 2;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: auto;
+}
+
+/*FAIRY*/
+.admindashboard-pet-accessory-image.fairy.flower {
+  top: 102px; 
+  left: 112px;
+  width: 25px; 
+}
+
+.admindashboard-pet-accessory-image.fairy.leaf {
+  top: 70px; 
+  left: 88px;
+  width: 30px; 
+}
+
+.admindashboard-pet-accessory-image.fairy.crown {
+  top: 86px; 
+  left: 95px;
+  width: 30px; 
+}
+
+/*FROG*/
+.admindashboard-pet-accessory-image.frog.flower {
+  top: 70px; 
+  left: 97px;
+  width: 30px; 
+  z-index: 1; 
+}
+
+.admindashboard-pet-accessory-image.frog.crown {
+  top: 72px; 
+  left: 95px;
+  width: 30px; 
+  z-index: 1; 
+}
+
+.admindashboard-pet-accessory-image.frog.leaf {
+  top: 70px; 
+  left: 95px;
+  width: 30px; 
+}
+
+/*MUSHROOM*/
+.admindashboard-pet-accessory-image.mushroom.flower {
+  top:62px; 
+  left: 97px;
+  width: 30px;
+  z-index: 1;  
+}
+
+.admindashboard-pet-accessory-image.mushroom.leaf {
+  top:60px; 
+  left: 95px;
+  width: 30px; 
+}
+
+.admindashboard-pet-accessory-image.mushroom.crown {
+  top:70px; 
+  left: 95px;
+  width: 30px; 
+}
+
+/*EMOTIONS*/
+.admindashboard-zzz-gif {
+  position: absolute;
+  margin-top: 25%; 
+  left: 65%;
+  transform: translateX(-50%);
+  width: 100px; 
+  height: auto;
+  z-index: 2; 
+}
+  
+/*BACKGROUND*/
+  .admindashboard-pet-background-image {
+    position: absolute;  /* Asegura que el fondo se quede en el fondo */
+    top: 5px;
+    left: 10;
+    width: 85%;
+    height: 105%;
+    border-radius: 10px;
+    justify-content: center;
+  }
+  
+  .admindashboard-status-bars {
+    margin-top: -5px; /* Mueve las barras de progreso hacia abajo */
+    margin-right: 75px;
+    align-items: left!important;
+    display: block; /* No usar flex en este contenedor */
+  }
+  
+  .admindashboard-bar-container {
+    margin-bottom: 10px;
+    max-width: 100%;
+    align-items: left!important;
+  }
+  
+  .admindashboard-bar-container p {
+    font-size: 16px;
+    margin-bottom: 0px;
+  }
+  
+  .admindashboard-bar {
+    height: 10px;
+    background-color: #f590bf; /* Rosa para la parte llena */
+    transition: width 0.5s ease;
+    width: 100%;
+    transform: scaleX(2.1);
+    transform-origin: left;
+  }
+  
+  .admindashboard-bar-container::-webkit-progress-bar {
+    background-color: #e0e0e0; /* Gris para la parte vacía */
+    border-radius: 5px;
+  }
+  
+  .admindashboard-bar-container::-webkit-progress-value {
+    background-color: #f590bf; /* Rosa para la parte llena */
+    border-radius: 5px;
+    height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+  }
+
+  /*USER NAME*/
+  .admindashboard-pet-name-container {
+    font-family: "Jersey 10", serif;
+    display: flex;
+    justify-content: center; /* Centra el nombre horizontalmente */
+    align-items: center;     /* Centra el nombre verticalmente */
+    height: 50px;
+    top: -125px;
+    color: #025918;  /* Cambia el color del texto aquí */
+    z-index: 2;
+  }
+  
+  .admindashboard-pet-name {
+    font-size: 1.2rem;  
+  }
+
+  .admindashboard-delete-button {
+    position: absolute; 
+    top: -5px;  
+    right: -5px; 
+    border: none;
+    background: transparent;
+    color: #350E40;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;  
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .admindashboard-pet-card:hover .admindashboard-delete-button  {
+    opacity: 1; 
+  }
+  
+  .admindashboard-delete-button:hover {
+    color: #1F0526;  /* Cambia el color cuando se pasa el ratón */
+    background-color: transparent;
+    transform: scale(1.2);  
+  }
+  
+  .admindashboard-delete-icon {
+    font-weight: bold;
+  }
+
+  /*CREATE PET BUTTON*/
+  .create-pet-button {
+    font-family: "Tiny5", serif;
+    position: fixed;
+    top: 550px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #6F994F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .create-pet-button:hover {
+    background-color: #027333;
+  }
+
+/*LOGOUT*/
+.logout-button {
+    position: fixed;
+    top: 20px; /* Ajusta la distancia desde el borde superior */
+    left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+    background-color: #BF7160; /* Color de fondo del botón */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .logout-button:hover {
+    background-color: #7c493d; /* Cambia el color cuando el ratón pasa sobre el botón */
+  }
+
+  .admindashboard-user-name-container{
+    margin-top: -20px;
+    padding-bottom: 5px;
+  }
+  .userdashboard-pet-owner {
+    font-size: 12px!important;
+    color: #777; /* Color más suave para el nombre del dueño */
+  }

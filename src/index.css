@@ -1,0 +1,59 @@
+.tiny5-regular {
+  font-family: "Tiny5", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0; 
+  height: 100vh; 
+  display: flex;
+  justify-content: center; 
+  align-items: center;  
+  flex-direction: column;  
+  background-image: url('./assets/Background.webp'); 
+  background-size: cover; 
+  background-position: center center; 
+  background-repeat: no-repeat;  
+  z-index: -1;
+}
+
+.welcome-page {
+  display: flex;
+  flex-direction: column;  /* Alinea los elementos en columna */
+  justify-content: center;  /* Centra los elementos verticalmente */
+  align-items: center;      /* Centra los elementos horizontalmente */
+  text-align: center;       /* Asegura que el texto esté centrado */
+}
+
+.welcome-title {
+  max-width: 600px; /* Puedes ajustar el tamaño según lo necesites */
+  max-height: 500px; /* Asegúrate de que la imagen no sea demasiado grande */
+  margin-bottom: 20px; /* Espacio entre el título y los botones */
+}
+
+.welcome-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.welcome-page .btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #6F994F;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Tiny5', serif !important;  /* Aplica la fuente a los botones */
+}
+
+.btn:hover {
+  background-color: #027333;
+}
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }

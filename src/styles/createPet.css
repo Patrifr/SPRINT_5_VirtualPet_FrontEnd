@@ -1,0 +1,64 @@
+.form-container {
+    background-color: white; 
+    padding: 50px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    max-height: 400px;
+    margin: 50px auto; 
+  }
+
+  .title-container {
+    text-align: center;
+    margin-bottom: 30px; /* Separa el título del contenido debajo */
+    position: relative;
+    margin-top: -30px; /* Mueve el título hacia arriba dentro de este contenedor */
+  }
+  
+  h2 {
+    font-family: "Tiny5", serif;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 400 !important;
+    color: #025918;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Estilo para los labels (nombres de los campos) */
+  form label {
+    font-size: 1rem;
+    margin-bottom: 5px; /* Agrega un espacio entre el label y el input */
+    display: block; /* Asegura que los labels ocupen toda la línea */
+  }
+  
+  /* Estilo para los inputs y selects */
+  form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Agrega un espacio entre los inputs */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.8rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del input */
+  }
+  
+  button {
+    background-color: #6F994F;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Tiny5", serif;
+    font-weight: 400 !important;
+    font-size: 1.2rem;
+  }
+  
+  button:hover {
+    background-color: #027333;
+  }
