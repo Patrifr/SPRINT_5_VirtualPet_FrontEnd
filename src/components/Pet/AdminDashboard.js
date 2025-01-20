@@ -6,6 +6,8 @@ import '../../styles/AdminDashboard.css';
 const AdminDashboard = () => {
   const [pets, setPets] = useState([]);
   const [error, setError] = useState('');
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [petToDelete, setPetToDelete] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,22 +30,6 @@ const AdminDashboard = () => {
 
     fetchAllPets();
   }, [navigate]);
-
-  
-  const handleDelete = (petId) => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      deletePet(petId, token)  // Solo se pasa petId, ya que la verificación de permiso la hace @PreAuthorize
-        .then(() => {
-          setPets(pets.filter(pet => pet.petId !== petId));
-          console.log('Pet deleted successfully');
-        })
-        .catch((err) => {
-          console.error('Error deleting pet:', err);
-        });
-    }
-  };
 
   const getPetImage = (pet) => {
     const { petColor, petType, asleep } = pet;
@@ -82,6 +68,32 @@ const AdminDashboard = () => {
       console.error("Missing petId or userId");
     }
   };
+
+  const handleDeleteClick = (petId) => {
+      setPetToDelete(petId);  
+      setShowConfirmDelete(true); 
+    };
+  
+    const handleConfirmDelete = () => {
+      const token = localStorage.getItem('token');
+      if (token && petToDelete) {
+        deletePet(petToDelete, token)
+          .then(() => {
+            setPets(pets.filter(pet => pet.petId !== petToDelete)); 
+            console.log('Pet deleted successfully');
+            setShowConfirmDelete(false);
+            setPetToDelete(null); 
+          })
+          .catch((err) => {
+            console.error("Error deleting pet:", err);
+          });
+      }
+    };
+  
+    const handleCancelDelete = () => {
+      setShowConfirmDelete(false); 
+      setPetToDelete(null); 
+    };
 
   return (
     <div className="admin-dashboard">
@@ -149,15 +161,16 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            <button
-              className="admindashboard-delete-button"
-              onClick={(e) => {
-              e.stopPropagation(); // Detiene la propagación del evento de clic
-              handleDelete(pet.petId); // Llama a la función de eliminación
-              }}
-              >
-              <span className="admindashboard-delete-icon">X</span>
-            </button>
+                      <button
+                      className="userdashboard-delete-button"
+                      onClick={(e) => { 
+                        e.stopPropagation(); // Detiene la propagación del evento
+                        e.preventDefault(); 
+                       handleDeleteClick(pet.petId)
+                      }}
+                      >
+                      <span className="userdashboard-delete-icon">X</span>
+                    </button>
 
             </div>
           ))}
@@ -176,6 +189,17 @@ const AdminDashboard = () => {
         }}>
         Logout
       </button>
+
+      {showConfirmDelete && (
+        <div className="confirm-delete-modal">
+          <div className="confirm-delete-content">
+            <p>Do you wish to release this magical creature?</p>
+            <button onClick={handleConfirmDelete} className="confirm-button">Set Them Free</button>
+            <button onClick={handleCancelDelete} className="cancel-button">Cancel</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

@@ -6,6 +6,8 @@ import '../../styles/UserDashboard.css';
 const UserDashboard = () => {
   const [pets, setPets] = useState([]);
   const [error, setError] = useState('');
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [petToDelete, setPetToDelete] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const UserDashboard = () => {
         setPets(response.data);
       } catch (err) {
         console.error('Failed to load pets.', err);
-        setError('Failed to load pets. No pets found. Please create a pet.');
+        setError('Your magical creature awaits! Create one to begin your journey.');
       }
     };
 
@@ -62,26 +64,36 @@ const UserDashboard = () => {
     localStorage.setItem('petId', pet.petId);
     if (petId && userId) {
       console.log("Navigating to pet-dashboard with petId:", petId, "and userId:", userId);
-      navigate(`/pet-dashboard?userId=${userId}&petId=${petId}`);
+      navigate(`/pet-dashboard?petId=${petId}`);
     } else {
-      console.error("Missing petId or userId");
+      console.error("Missing petId");
     }
   };
 
-  const handleDelete = (petId) => {    
-    const userId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
+  const handleDeleteClick = (petId) => {
+    setPetToDelete(petId);  
+    setShowConfirmDelete(true); 
+  };
 
-    if (token && userId) {
-      deletePet(userId, petId, token)
+  const handleConfirmDelete = () => {
+    const token = localStorage.getItem('token');
+    if (token && petToDelete) {
+      deletePet(petToDelete, token)
         .then(() => {
-          setPets(pets.filter(pet => pet.petId !== petId)); // Eliminar la mascota del estado
+          setPets(pets.filter(pet => pet.petId !== petToDelete)); 
           console.log('Pet deleted successfully');
+          setShowConfirmDelete(false);
+          setPetToDelete(null); 
         })
         .catch((err) => {
           console.error("Error deleting pet:", err);
         });
     }
+  };
+
+  const handleCancelDelete = () => {
+    setShowConfirmDelete(false); 
+    setPetToDelete(null); 
   };
 
   return (
@@ -150,7 +162,7 @@ const UserDashboard = () => {
                       onClick={(e) => { 
                         e.stopPropagation(); // Detiene la propagación del evento
                         e.preventDefault(); 
-                        handleDelete(pet.petId); 
+                       handleDeleteClick(pet.petId)
                       }}
                       >
                       <span className="userdashboard-delete-icon">X</span>
@@ -159,8 +171,14 @@ const UserDashboard = () => {
           ))}
         </div>
       ) : (
-        <p>No pets found. Please create a pet.</p>
+
+        <div className="error-message-container">
+          <div className="error-message-content">
+            <p>{error}</p>
+          </div>
+        </div>
       )}
+
       <button className="userdashboard-create-pet-button" onClick={() => navigate('/create-pet')}>
         Create New Pet
       </button>    
@@ -171,6 +189,17 @@ const UserDashboard = () => {
         navigate('/signin');}}>       
         Logout
       </button>
+
+      {showConfirmDelete && (
+        <div className="confirm-delete-modal">
+          <div className="confirm-delete-content">
+            <p>Are you sure you want to unbind this creature from your magic?</p>
+            <button onClick={handleConfirmDelete} className="confirm-button">Unbind</button>
+            <button onClick={handleCancelDelete} className="cancel-button">Cancel</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };

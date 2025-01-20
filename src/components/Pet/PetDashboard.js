@@ -12,12 +12,13 @@ const PetDashboard = () => {
   const [selectedAccessory, setSelectedAccessory] = useState('NONE');
   const [loading, setLoading] = useState(true);
   const [showHeart, setShowHeart] = useState(false);
+  const [showNom, setShowNom] = useState(false);
 
-  // Fetch the pet details from the API when the component is mounted
   useEffect(() => {
     const fetchPetDetails = async () => {
       const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId'); // Obtener el userId desde localStorage
+      const userId = localStorage.getItem('userId'); 
+      
       if (!token || !userId) {
         console.error("Token or userId not found!");
         navigate('/signin');
@@ -25,17 +26,16 @@ const PetDashboard = () => {
       }
 
       try {
-        // Se obtiene petId de pet, no de URL
-        const petIdFromLocalStorage = localStorage.getItem('petId'); // Si guardas el petId en el localStorage
+        const petIdFromLocalStorage = localStorage.getItem('petId');
         if (!petIdFromLocalStorage) {
           console.error("PetId not found in localStorage.");
           return;
         }
 
-        const response = await getPetDetails(userId, petIdFromLocalStorage, token);  // Solo pasamos el petId y userId
+        const response = await getPetDetails(petIdFromLocalStorage, token);
         if (response && response.data) {
-          setPet(response.data); // Guardamos los detalles de la mascota
-          setLoading(false);  // Cambiamos a false cuando los detalles se han cargado
+          setPet(response.data);
+          setLoading(false);
         }
       } catch (err) {
         console.error('Error fetching pet details:', err);
@@ -51,14 +51,13 @@ const PetDashboard = () => {
     if (pet && pet.petId) {
 
       const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId'); 
 
-      if (token && userId) {
+      if (token) {
         const petUpdateRequest = {
           location: e.target.value,
         };
 
-        updatePet(pet.petId, userId, petUpdateRequest, token)
+        updatePet(pet.petId, petUpdateRequest, token)
           .then((response) => {
             console.log("Location updated successfully:", response.data);
             setPet(response.data);
@@ -75,17 +74,16 @@ const PetDashboard = () => {
 
     if (pet && pet.petId) {
       const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
 
-      if (token && userId) {
+      if (token) {
         const petUpdateRequest = {
           accessory: e.target.value,
         };
 
-        updatePet(pet.petId, userId, petUpdateRequest, token)
+        updatePet(pet.petId, petUpdateRequest, token)
           .then((response) => {
             console.log("Accessory updated successfully:", response.data);
-            setPet(response.data); // Actualizamos el estado con los nuevos datos de la mascota
+            setPet(response.data); 
           })
           .catch((err) => {
             console.error("Error updating accessory:", err);
@@ -96,26 +94,25 @@ const PetDashboard = () => {
 
   useEffect(() => {
     if (pet && pet.accessory) {
-      setSelectedAccessory(pet.accessory);  // Sincroniza el accesorio del pet con el estado
+      setSelectedAccessory(pet.accessory);  
     }
   }, [pet]);
 
   useEffect(() => {
     if (pet && pet.location) {
-      setSelectedLocation(pet.location);  // Sincroniza la localización del pet con el estado
+      setSelectedLocation(pet.location);  
     }
   }, [pet]);
 
   const handleInteraction = (interactionType) => {
-    // Verificamos que la mascota esté cargada correctamente
     if (!pet || !pet.petId) {
       console.error("Pet or Pet ID is not loaded yet.");
       return;
     }
   
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
-    if (!token || !userId) {
+
+    if (!token) {
       console.error("Token or userId not found!");
       return;
     }
@@ -137,11 +134,16 @@ const PetDashboard = () => {
     }
   
     if (interactionType === 'PET') {
-      setShowHeart(true); // Hacemos visible el GIF
-      setTimeout(() => setShowHeart(false), 2000); // Lo ocultamos después de 2 segundos
+      setShowHeart(true); 
+      setTimeout(() => setShowHeart(false), 2000); 
     }
 
-    updatePet(pet.petId, userId, petUpdateRequest, token)
+    if (interactionType === 'FEED') {
+      setShowNom(true); 
+      setTimeout(() => setShowNom(false), 2500); 
+    }
+
+    updatePet(pet.petId, petUpdateRequest, token)
       .then((response) => {
         console.log(`${interactionType} interaction updated successfully:`, response.data);
         setPet(response.data); 
@@ -171,12 +173,12 @@ const PetDashboard = () => {
   };
   
   const getZzzGif = (pet) => {
-    // Si la mascota está dormida, mostrar el gif
     if (pet.asleep) {
-      return require('../../assets/emotions/zzz.gif'); // Ruta de tu gif de zzz
+      return require('../../assets/emotions/zzz.gif'); 
     }
-    return null; // Si no está dormida, no mostrar nada
+    return null; 
   };
+  
 
   const userRole = localStorage.getItem("role");  
 
@@ -289,11 +291,20 @@ const PetDashboard = () => {
 
           {showHeart && (
             <img
-              src={require('../../assets/emotions/heart.gif')} // Asegúrate de tener un GIF llamado heart.gif en assets
+              src={require('../../assets/emotions/heart.gif')}
               alt="Heart"
               className={`heart-gif ${pet.petType.toLowerCase()}`}
             />
           )}
+
+          {showNom && (
+            <img
+              src={require('../../assets/emotions/nomnomnom.gif')} 
+              alt="Nomnom"
+              className={`Nomnom-gif ${pet.petType.toLowerCase()}`}
+            />
+          )}
+
         </div>
       </div>
     </div>

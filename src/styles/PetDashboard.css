@@ -100,13 +100,42 @@
   z-index: 10;
 }
 
-/*FAIRY*/
 .heart-gif.fairy {
   position: absolute;
   top: 28%; /* Centrado en el medio de la imagen */
   left: 25%;
   transform: translate(-50%, -50%); /* Centrado perfecto */
   width: 30px; /* Tamaño del GIF */
+  height: auto;
+  z-index: 10;
+}
+
+.Nomnom-gif.mushroom {
+  position: absolute;
+  top: 35%; /* Centrado en el medio de la imagen */
+  left: 33%;
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+  width: 70px; /* Tamaño del GIF */
+  height: auto;
+  z-index: 10;
+}
+
+.Nomnom-gif.frog {
+  position: absolute;
+  top: 35%; /* Centrado en el medio de la imagen */
+  left: 32%;
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+  width: 70px; /* Tamaño del GIF */
+  height: auto;
+  z-index: 10;
+}
+
+.Nomnom-gif.fairy {
+  position: absolute;
+  top: 28%; /* Centrado en el medio de la imagen */
+  left: 25%;
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+  width: 70px; /* Tamaño del GIF */
   height: auto;
   z-index: 10;
 }

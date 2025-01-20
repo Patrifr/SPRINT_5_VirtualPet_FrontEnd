@@ -62,3 +62,22 @@
   button:hover {
     background-color: #027333;
   }
+
+  /*LINK*/
+.whimsylink-container{
+  margin-left: 70px;
+}
+
+.whimsylink {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.whimsylink:hover {
+  color: #4CAF50;
+}

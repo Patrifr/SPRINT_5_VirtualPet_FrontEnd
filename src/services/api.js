@@ -30,23 +30,23 @@ export const createPet = (petData, token) => {
       },
     });
 
-    export const updatePet = (petId, userId, petUpdateRequest, token) => {
-      if (!token || !userId) {
+    export const updatePet = (petId, petUpdateRequest, token) => {
+      if (!token) {
         console.error("User not authenticated or token missing.");
         return Promise.reject("Authentication required");
       }
     
-      return axios.put(`/api/pet/update?userId=${userId}&petId=${petId}`, petUpdateRequest, {
+      return axios.put('/api/pet/update', petUpdateRequest, {
+        params: { petId },
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
     };
     
-    // Función para obtener los detalles de la mascota
-    export const getPetDetails = (userId, petId, token) => {
+    export const getPetDetails = (petId, token) => {
       return api.get('/pet/get', {
-        params: { userId, petId },
+        params: { petId },
         headers: { Authorization: `Bearer ${token}` },
       });
     };

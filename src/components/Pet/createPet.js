@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createPet } from '../../services/api'; 
 import '../../styles/createPet.css'; 
 
@@ -47,7 +48,8 @@ const CreatePet = () => {
     }
   };
 
-
+  const userRole = localStorage.getItem("role"); 
+  const dashboardLink = userRole === 'ADMIN' ? '/admin-dashboard' : '/user-dashboard';
 
   return (
     <div className="create-pet-container">
@@ -92,6 +94,12 @@ const CreatePet = () => {
             </select>
           </div>
           <button type="submit">Create</button>
+
+          <div className="whimsylink-container">
+            <Link to={dashboardLink} className="whimsylink">
+            🎔Go back to Your WhimsyGarden🎔
+            </Link>
+          </div>
         </form>
       </div>
     </div>
