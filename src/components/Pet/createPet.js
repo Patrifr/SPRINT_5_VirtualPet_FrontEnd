@@ -15,6 +15,7 @@ const CreatePet = () => {
     e.preventDefault();
     
     const userId = localStorage.getItem("userId");
+    console.log(userId);
     const token = localStorage.getItem("token");
     const userRole = localStorage.getItem('role');
   

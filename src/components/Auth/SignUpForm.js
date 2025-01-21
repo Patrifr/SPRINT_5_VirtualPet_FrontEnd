@@ -22,6 +22,9 @@ const SignUpForm = () => {
       console.log('User signed up successfully:', response.data);
 
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.userId);
+      localStorage.setItem('role', response.data.role)
+
 
       const role = response.data.role;  
       if (role === 'ADMIN') {

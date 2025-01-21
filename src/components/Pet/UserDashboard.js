@@ -172,11 +172,13 @@ const UserDashboard = () => {
         </div>
       ) : (
 
-        <div className="error-message-container">
-          <div className="error-message-content">
-            <p>{error}</p>
+        error && (
+          <div className="error-message-container">
+            <div className="error-message-content">
+              <p>{error}</p>
+            </div>
           </div>
-        </div>
+        )
       )}
 
       <button className="userdashboard-create-pet-button" onClick={() => navigate('/create-pet')}>
